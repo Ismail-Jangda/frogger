@@ -22,4 +22,11 @@ class Scoreboard(Turtle):
     
     def game_over(self):
         self.goto(0 , 0)
+        with open("data.txt", "r") as high_score:
+            contents = int(high_score.read())
+            if contents < self.level:
+                print(f"you beat the highscore!! The last high score was {contents}")
+                with open("data.txt", "w") as set_high_score:
+                    set_high_score.write(str(self.level))
+
         self.write(f"Game Over", align="center", font= FONT)
